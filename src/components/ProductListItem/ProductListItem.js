@@ -12,4 +12,5 @@ function ProductListItem({ product, isSelected, onClick }) {
   )
 }
 
+console.log("ProductListItem")
 export default ProductListItem;

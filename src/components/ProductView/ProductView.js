@@ -8,16 +8,32 @@ function ProductView({ products }) {
 
   // TODO: Replace with state variable
  // const sideOpen = true;
-  const [sideOpen, setSideOpen] = useState(true);
+  const [sideOpen, setSideOpen] = useState(()=>{
+        if(localStorage.getItem('sideOpen') === "false"){
+          return false
+        }
+        return true
+  }
+    );
   const [selectedProduct, setSelectedProduct] = useState();
 
-  useEffect(() => {
-    setSideOpen(true);
-}, [selectedProduct]);
 
-useEffect(() => {
-  setSelectedProduct();
-}, [sideOpen]);
+
+    // Open side panel when product is selected
+    useEffect(() => {
+      console.log(`selectedProduct CHANGED TO`, selectedProduct);
+      if (selectedProduct){setSideOpen(true);}
+
+
+  }, [selectedProduct]);
+
+  // Deselect product when side panel is closed
+  useEffect(() => {
+      console.log(`sideOpen CHANGED TO`, sideOpen);
+      if (!sideOpen){
+          setSelectedProduct();}
+          localStorage.setItem('sideOpen', sideOpen) //bonus
+  }, [sideOpen]);
 
   return (
     <div className="product-view">
@@ -49,5 +65,5 @@ useEffect(() => {
     </div>
   );
 }
-
+console.log("product view")
 export default ProductView;

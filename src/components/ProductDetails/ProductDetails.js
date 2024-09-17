@@ -27,4 +27,5 @@ function ProductDetails({ product, visible }) {
   )
 }
 
+console.log("ProductDetails")
 export default ProductDetails;
